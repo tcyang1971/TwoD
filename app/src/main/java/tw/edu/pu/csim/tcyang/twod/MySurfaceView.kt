@@ -26,12 +26,15 @@ class MySurfaceView(context: Context?, attrs: AttributeSet?) : SurfaceView(conte
     var Score:Int = 0  //成績
     var Shooting:Int = 0  //消失時間
 
+    lateinit var bird:Bird
+
     init {
         surfaceHolder = getHolder()
         BG = BitmapFactory.decodeResource(getResources(), R.drawable.back)
         SuperMan = BitmapFactory.decodeResource(getResources(), R.drawable.superman)
         surfaceHolder.addCallback(this)
         Player = BitmapFactory.decodeResource(getResources(), R.drawable.player)
+        bird = Bird(context!!)
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {
@@ -95,6 +98,8 @@ class MySurfaceView(context: Context?, attrs: AttributeSet?) : SurfaceView(conte
         paint.color = Color.BLUE
         paint.textSize = 50f
         canvas.drawText("Score:"+Score.toString(), 50f,50f, paint)
+
+        bird.draw(canvas)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
