@@ -46,4 +46,24 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.btnStart.isEnabled == false){
+            job = GlobalScope.launch(Dispatchers.Main) {
+                while(secondsLeft > 0) {
+                    secondsLeft--
+                    binding.txv.text = secondsLeft.toString()
+                    delay(25)
+                }
+            }
+        }
+    }
+
 }
