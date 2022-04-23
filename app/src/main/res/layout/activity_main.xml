@@ -27,4 +27,10 @@
         android:layout_height="wrap_content"
         android:text="停止"
         android:textSize="24sp"/>
+
+    <tw.edu.pu.csim.tcyang.twod.MySurfaceView
+        android:id="@+id/mysv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
