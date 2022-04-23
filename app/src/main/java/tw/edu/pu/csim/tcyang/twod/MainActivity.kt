@@ -2,6 +2,11 @@ package tw.edu.pu.csim.tcyang.twod
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import tw.edu.pu.csim.tcyang.twod.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,5 +23,20 @@ class MainActivity : AppCompatActivity() {
         binding.txv.text = secondsLeft.toString()
         binding.btnStart.isEnabled = true
         binding.btnStop.isEnabled = false
+
+        binding.btnStart.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    while(secondsLeft > 0) {
+                        secondsLeft--
+                        binding.txv.text = secondsLeft.toString()
+                        binding.btnStart.isEnabled = false
+                        binding.btnStop.isEnabled = true
+                        delay(25)
+                    }
+                }
+            }
+        })
+
     }
 }
