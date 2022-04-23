@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
                         binding.btnStop.isEnabled = true
                         delay(25)
                     }
+                    secondsLeft = 1000
+                    binding.btnStart.isEnabled = true
+                    binding.btnStop.isEnabled = false
                 }
             }
         })
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity() {
                     binding.txv.text = secondsLeft.toString()
                     delay(25)
                 }
+                secondsLeft = 1000
+                binding.btnStart.isEnabled = true
+                binding.btnStop.isEnabled = false
             }
         }
     }
