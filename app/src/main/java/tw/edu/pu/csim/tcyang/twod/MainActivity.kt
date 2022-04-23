@@ -1,5 +1,6 @@
 package tw.edu.pu.csim.tcyang.twod
 
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
                         binding.btnStart.isEnabled = false
                         binding.btnStop.isEnabled = true
                         delay(25)
+
+                        val canvas: Canvas = binding.mysv.holder.lockCanvas()
+                            binding.mysv.drawSomething(canvas)
+                        binding.mysv.holder.unlockCanvasAndPost(canvas)
                     }
                     secondsLeft = 1000
                     binding.btnStart.isEnabled = true
@@ -64,6 +69,10 @@ class MainActivity : AppCompatActivity() {
                     secondsLeft--
                     binding.txv.text = secondsLeft.toString()
                     delay(25)
+
+                    val canvas: Canvas = binding.mysv.holder.lockCanvas()
+                        binding.mysv.drawSomething(canvas)
+                    binding.mysv.holder.unlockCanvasAndPost(canvas)
                 }
                 secondsLeft = 1000
                 binding.btnStart.isEnabled = true
