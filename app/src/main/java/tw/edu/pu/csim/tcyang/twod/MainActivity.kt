@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnStart.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
+                binding.mysv.Score = 0
                 job = GlobalScope.launch(Dispatchers.Main) {
                     while(secondsLeft > 0) {
                         secondsLeft--
