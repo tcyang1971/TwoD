@@ -16,18 +16,37 @@ class Bird(context: Context) {
     var SrcRect: Rect
     lateinit var DestRect: Rect
 
+    var count: Int = 1
+
     init {
         image = BitmapFactory.decodeResource(res, R.drawable.bird1)
         w = image.width/8
         h = image.height/8
-        BirdX -= w  //螢幕左邊飛出
+        BirdX -= w  //螢幕右邊飛出
         SrcRect = Rect(0, 0, image.width, image.height) //裁切
     }
 
     fun draw(canvas: Canvas) {
+        update()
+        when (count) {
+            1 -> image = BitmapFactory.decodeResource(res, R.drawable.bird1)
+            2 -> image = BitmapFactory.decodeResource(res, R.drawable.bird2)
+            3 -> image = BitmapFactory.decodeResource(res, R.drawable.bird3)
+            4 -> image = BitmapFactory.decodeResource(res, R.drawable.bird4)
+        }
         DestRect = Rect(BirdX, BirdY, BirdX + w, BirdY + h)
         canvas.drawBitmap(image, SrcRect, DestRect, null)
     }
 
+    fun update(){
+        count++
+        if (count>4){
+            count = 1
+        }
 
+        BirdX -= 10
+        if (BirdX<=0){
+            BirdX = res.displayMetrics.widthPixels - w
+        }
+    }
 }
